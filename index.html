@@ -2,205 +2,309 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Projects | Swapneel Das</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="1.jpeg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-dark: #1e293b;
-            --accent-blue: #3b82f6;
-            --accent-purple: #a855f7;
+            --wp-admin-blue: #2271b1;
+            --wp-dark: #1d2327;
+            --wp-light-grey: #f0f0f1;
+            --wp-border: #dcdcde;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: #f1f5f9;
+            color: #2c3338;
+            background-color: #ffffff;
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        
-        h1, h2, h3, .brand-font { font-family: 'Outfit', sans-serif; }
 
-        .section-card {
-            background: rgba(30, 41, 59, 0.4);
+        h1, h2, h3 {
+            font-family: 'Source Serif 4', serif;
+            color: var(--wp-dark);
+            letter-spacing: -0.01em;
+        }
+
+        nav {
+            border-bottom: 1px solid var(--wp-border);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 1.25rem;
+        }
+
+        .hero-mini {
+            background: radial-gradient(circle at 10% 20%, rgba(34, 113, 177, 0.03) 0%, rgba(255, 255, 255, 1) 90%);
+            border-bottom: 1px solid var(--wp-border);
+        }
+
+        .wp-block-card {
+            background: #fff;
+            border: 1px solid var(--wp-border);
+            padding: 1.5rem;
             transition: all 0.3s ease;
-        }
-        .section-card:hover { 
-            background: rgba(30, 41, 59, 0.7);
-            border-color: var(--accent-blue);
-            transform: scale(1.02);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            border-radius: 4px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .blob {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
-            filter: blur(100px);
-            border-radius: 50%;
-            z-index: -1;
+        .wp-block-card:hover {
+            border-color: var(--wp-admin-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
         }
 
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(20px); 
-            transition: all 0.6s ease-out; 
-        }
-        .reveal.active { 
-            opacity: 1; 
-            transform: translateY(0); 
+        .project-tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--wp-admin-blue);
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
-        .search-input:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-            outline: none;
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-view {
+            margin-top: auto;
+            color: var(--wp-admin-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+
+        .btn-view:hover {
+            gap: 0.8rem;
+        }
+
+        .btn-back {
+            background-color: var(--wp-admin-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: #1a5a8e;
+        }
+
+        /* Pagination Styling */
+        .pagination-btn {
+            border: 1px solid var(--wp-border);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pagination-btn:not(:disabled):hover {
+            background-color: var(--wp-light-grey);
+            border-color: var(--wp-admin-blue);
+            color: var(--wp-admin-blue);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .footer-link {
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--wp-admin-blue);
         }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Background Blobs -->
-    <div class="blob top-[-100px] left-[-100px]"></div>
-    <div class="blob bottom-[-100px] right-[-100px]"></div>
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-xl z-50 border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="https://swapneel.bro.bd/" class="brand-font font-bold text-xl tracking-tight text-blue-400">Swapneel Das.</a>
-            <a href="https://swapneel.bro.bd/" class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium rounded-lg transition-all border border-white/5">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                </svg>
-                Return Home
+    <!-- Header / Nav -->
+    <nav class="fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-5 md:px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 uppercase">
+                SWAPNEEL <span class="text-blue-600">DAS</span>
+            </a>
+            
+            <a href="index.html" class="btn-back">
+                Back to Home
             </a>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6">
-        <div class="max-w-4xl mx-auto">
-            <!-- Header Section -->
-            <div class="text-center mb-12">
-                <h1 class="reveal text-4xl md:text-5xl font-bold text-white mb-4">Selected <span class="gradient-text">Projects</span></h1>
-                <p class="reveal text-slate-400 max-w-xl mx-auto text-base" style="transition-delay: 100ms;">
-                    Showcasing my work across literature, design, and technology.
-                </p>
+    <!-- Page Title Section -->
+    <section class="hero-mini pt-32 pb-16 px-5 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <nav class="flex mb-4 text-xs font-bold uppercase tracking-widest text-slate-400 border-none bg-transparent">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <span class="mx-2">/</span>
+                <span class="text-slate-900">Projects</span>
+            </nav>
+            <h1 class="text-4xl md:text-6xl font-black mb-4">Selected Works</h1>
+            <p class="text-slate-600 max-w-2xl text-lg">
+                Explore a comprehensive list of my academic research, digital initiatives, and creative projects.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Grid Container -->
+    <section class="py-20 px-5 md:px-6 min-h-[60vh]">
+        <div class="max-w-6xl mx-auto">
+            <!-- Grid where projects are injected -->
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+                <!-- Projects will be rendered here by JavaScript -->
             </div>
 
-            <!-- Search Bar -->
-            <div class="reveal mb-10 relative" style="transition-delay: 150ms;">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </div>
-                <input 
-                    type="text" 
-                    id="projectSearch" 
-                    placeholder="Search projects by title..." 
-                    class="search-input w-full bg-slate-800/50 border border-white/10 text-white rounded-2xl py-4 pl-12 pr-4 transition-all"
-                >
-            </div>
+            <!-- Pagination Controls -->
+            <div class="mt-16 flex flex-col items-center gap-6">
+                <div class="flex items-center gap-4">
+                    <button id="prev-btn" onclick="changePage(-1)" class="pagination-btn">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        Previous
+                    </button>
+                    
+                    <span id="page-info" class="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                        Page 1 of 1
+                    </span>
 
-            <!-- Projects List -->
-            <div id="projectsList" class="space-y-4">
-                
-                <!-- Project 1 -->
-                <div class="project-item reveal section-card p-6 flex items-center justify-between group" style="transition-delay: 200ms;">
-                    <h3 class="text-lg md:text-xl font-semibold text-slate-200 group-hover:text-white transition-colors">Modernism in Poetry</h3>
-                    <a href="https://github.com/yourusername/poetry-analysis" target="_blank" class="px-6 py-2 bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full text-sm font-bold transition-all border border-blue-600/20">
-                        Explore
-                    </a>
+                    <button id="next-btn" onclick="changePage(1)" class="pagination-btn">
+                        Next
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="project-item reveal section-card p-6 flex items-center justify-between group" style="transition-delay: 300ms;">
-                    <h3 class="text-lg md:text-xl font-semibold text-slate-200 group-hover:text-white transition-colors">Personal Portfolio V1</h3>
-                    <a href="index.html" class="px-6 py-2 bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full text-sm font-bold transition-all border border-blue-600/20">
-                        Explore
-                    </a>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-item reveal section-card p-6 flex items-center justify-between group" style="transition-delay: 400ms;">
-                    <h3 class="text-lg md:text-xl font-semibold text-slate-200 group-hover:text-white transition-colors">Echoes of Sunamganj</h3>
-                    <a href="https://yourblog.com/sunamganj-story" target="_blank" class="px-6 py-2 bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full text-sm font-bold transition-all border border-blue-600/20">
-                        Explore
-                    </a>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-item reveal section-card p-6 flex items-center justify-between group" style="transition-delay: 500ms;">
-                    <h3 class="text-lg md:text-xl font-semibold text-slate-200 group-hover:text-white transition-colors">Digital Humanities Research</h3>
-                    <a href="https://scholar.google.com" target="_blank" class="px-6 py-2 bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white rounded-full text-sm font-bold transition-all border border-blue-600/20">
-                        Explore
-                    </a>
-                </div>
-
-                <!-- No Results Placeholder -->
-                <div id="noResults" class="hidden text-center py-12">
-                    <p class="text-slate-400">No projects found matching your search.</p>
-                </div>
-
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="py-12 border-t border-white/5 bg-slate-950 text-center">
-        <p class="text-slate-500 text-sm">© 2026 Swapneel Das. Back to <a href="https://swapneel.bro.bd/" class="text-blue-400 hover:underline">Home</a></p>
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-100 text-center px-5">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-slate-500 text-xs md:text-sm mb-4">© 2026 Swapneel Das. All rights reserved.</p>
+            <div class="flex justify-center items-center gap-6 text-[10px] uppercase tracking-widest font-bold text-slate-400">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <span class="w-1 h-1 bg-slate-200 rounded-full"></span>
+                <a href="#" class="footer-link">Terms of Use</a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            const windowHeight = window.innerHeight;
-            reveals.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    el.classList.add("active");
-                }
+        // Project Data Array - Add your new projects here
+        const projects = [
+            {
+                tag: "Research",
+                title: "English Literary Structures",
+                desc: "An investigation into the evolution of prose in late 19th-century Victorian literature.",
+                url: "#"
+            },
+            {
+                tag: "Development",
+                title: "Portfolio v2.0",
+                desc: "Re-imagining digital identity through minimalist WordPress-inspired design systems.",
+                url: "#"
+            },
+            {
+                tag: "Creative",
+                title: "Sunamganj Archives",
+                desc: "A digital effort to preserve oral traditions and folk songs of rural Bangladesh.",
+                url: "#"
+            },
+            {
+                tag: "Academic",
+                title: "Linguistic Analysis",
+                desc: "Case study on phonetic variations in second-language English learners.",
+                url: "#"
+            },
+            {
+                tag: "Media",
+                title: "Digital Humanities",
+                desc: "Using computational tools to visualize themes across classic literature datasets.",
+                url: "#"
+            },
+            {
+                tag: "Strategy",
+                title: "Content Ecosystems",
+                desc: "Developing modern editorial workflows for literary journals in the digital age.",
+                url: "#"
+            }
+        ];
+
+        const PROJECTS_PER_PAGE = 4;
+        let currentPage = 1;
+
+        function renderProjects() {
+            const grid = document.getElementById('projects-grid');
+            const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
+            const endIndex = startIndex + PROJECTS_PER_PAGE;
+            const displayedProjects = projects.slice(startIndex, endIndex);
+            
+            const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+
+            // Update UI
+            grid.innerHTML = displayedProjects.map(p => `
+                <div class="reveal active">
+                    <a href="${p.url}" target="_blank" class="wp-block-card group">
+                        <span class="project-tag">${p.tag}</span>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition">${p.title}</h3>
+                        <p class="text-slate-500 text-sm mb-6">${p.desc}</p>
+                        <span class="btn-view">
+                            View Project 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </span>
+                    </a>
+                </div>
+            `).join('');
+
+            // Update Buttons & Info
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage === totalPages;
+            document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            renderProjects();
+            // Scroll back to top of projects section smoothly
+            window.scrollTo({
+                top: document.getElementById('projects-grid').offsetTop - 150,
+                behavior: 'smooth'
             });
         }
 
-        const searchInput = document.getElementById('projectSearch');
-        const projectItems = document.querySelectorAll('.project-item');
-        const noResults = document.getElementById('noResults');
-
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            let hasVisibleProjects = false;
-
-            projectItems.forEach(item => {
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    item.style.display = 'flex';
-                    hasVisibleProjects = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            if (hasVisibleProjects) {
-                noResults.classList.add('hidden');
-            } else {
-                noResults.classList.remove('hidden');
-            }
-        });
-
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
+        // Initialize
+        window.onload = renderProjects;
     </script>
 </body>
 </html>
